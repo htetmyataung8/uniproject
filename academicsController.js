@@ -23,6 +23,21 @@ const psconfig = require('../models/academicmast/psconfig');
 const topic = require('../models/academicmast/topics');
 const assessment = require('../models/academicmast/assessment');
 
+const school = require('../models/acadenicmast/school');
+
+exports.getschooldatabyid = (req,res,next)=> {
+    let allschooldata;
+    let schoolid='';
+
+    school.findAll({
+        where:{
+            id:schoolid,
+        }
+    }).then((allschools)=>{
+console.log(allschools);
+    })
+    
+}
 exports.getacademicidxmast = (req,res,next) => {
 
     let allcompanies, allacademiclvl, allstudyfield, allcurrency;
@@ -136,6 +151,7 @@ exports.getdeptdatabyid = (req,res,next)=> {
             compid:req.query.companyid,
             id:req.query.id,
         },
+        
         include: [{model:company, require: true}]
     }).then(depts=>{
         alldepts = depts.map((element)=>{
